@@ -3,7 +3,7 @@
 // Definitions by: Tom Wanzek <https://github.com/tomwanzek>, Alex Ford <https://github.com/gustavderdrache>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-// Last module patch version validated against: 0.7
+// Last module patch version validated against: 0.7.1
 
 import { Link } from 'd3-shape';
 
@@ -208,7 +208,7 @@ export interface SankeyLayout<Data, N extends SankeyExtraProperties, L extends S
      *
      * This method is intended to be called after computing the initial Sankey layout, for example when the diagram is repositioned interactively.
      *
-     * @param graph
+     * @param graph A previously initialized Sankey graph for which the link positions should be re-calculated
      */
     update(graph: SankeyGraph<N, L>): SankeyGraph<N, L>;
 
@@ -266,7 +266,7 @@ export interface SankeyLayout<Data, N extends SankeyExtraProperties, L extends S
     nodeId(nodeId: (node: SankeyNode<N, L>) => string | number): this;
 
     /**
-     * Return the current node alignment method, which defaults to d3.sankeyLeft.
+     * Return the current node alignment method, which defaults to d3.sankeyJustify.
      */
     nodeAlign(): (node: SankeyNode<N, L>, n: number) => number;
     /**
@@ -333,7 +333,7 @@ export interface SankeyLayout<Data, N extends SankeyExtraProperties, L extends S
     /**
      * Set the number of relaxation iterations when generating the layout and return this Sankey layout generator.
      *
-     * @param iterations Number of relaxation iterations, which defaluts to 32.
+     * @param iterations Number of relaxation iterations, which defaults to 32.
      */
     iterations(iterations: number): this;
 }
@@ -365,7 +365,7 @@ export function sankey<N extends SankeyExtraProperties, L extends SankeyExtraPro
  * Get a Sankey layout generator.
  *
  * The nodes/links accessors need to be configured to work with the data type of the first argument passed
- * in when invoking the Sankey lyout generator.
+ * in when invoking the Sankey layout generator.
  *
  * The first generic corresponds to the data type of the first argument passed in when invoking the Sankey layout generator,
  * and its nodes/links accessors.

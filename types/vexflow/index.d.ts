@@ -1,8 +1,9 @@
-// Type definitions for VexFlow v1.2.83
+// Type definitions for VexFlow v1.2.85
 // Project: http://vexflow.com
 // Definitions by: Roman Quiring <https://github.com/rquiring>
-//                 Sebastian Haas <https://github.com/sebastianhaas/>
-//                 Basti Hoffmann <https://github.com/bohoffi/>
+//                 Sebastian Haas <https://github.com/sebastianhaas>
+//                 Basti Hoffmann <https://github.com/bohoffi>
+//                 Simon Schmid <https://github.com/sschmidTU>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 //inconsistent namespace: this is a helper funtion from tables.js and should not pollute the global namespace!
@@ -187,6 +188,7 @@ declare namespace Vex {
 
         class BarNote extends Note {
             static DEBUG : boolean;
+            constructor();
             getType() : Barline.type;
             setType(type : Barline.type) : BarNote;
             getBoundingBox() : BoundingBox;
@@ -552,6 +554,7 @@ declare namespace Vex {
             setYShift(y : number) : Modifier;
             setXShift(x : number) : void; //inconsistent type: void -> Modifier
             draw() : void;
+            alignSubNotesWithNote(subNotes : Note[], note : Note) : void;
         }
 
         namespace Modifier {
@@ -618,7 +621,7 @@ declare namespace Vex {
             getTickMultiplier() : Fraction;
             applyTickMultiplier(numerator : number, denominator : number) : void;
             setDuration(duration : Fraction) : void;
-
+	    
             constructor(note_struct : {type? : string, dots? : number, duration : string});
             getPlayNote() : any;
             setPlayNote(note : any) : Note;
@@ -687,6 +690,11 @@ declare namespace Vex {
             setStave(stave : Stave) : NoteHead;
             preFormat() : NoteHead;
             draw() : void;
+        }
+
+        class NoteSubGroup extends Modifier {
+			constructor(subnotes : Note[]);
+			preFormat() : void;
         }
 
         class Ornament extends Modifier {
@@ -1294,6 +1302,10 @@ declare namespace Vex {
             getWidth() : number;
             getX() : number;
             setX(x : number) : TickContext;
+            getXBase() : number;
+            setXBase(xBase : number) : void;
+            getXOffset() : number;
+            setXOffset(xOffset : number) : void;
             getPixelsUsed() : number;
             setPixelsUsed(pixelsUsed : number) : TickContext;
             setPadding(padding : number) : TickContext;

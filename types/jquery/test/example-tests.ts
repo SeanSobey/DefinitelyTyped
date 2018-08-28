@@ -1,4 +1,16 @@
-/* tslint:disable:no-arg object-literal-shorthand one-variable-per-declaration only-arrow-functions prefer-const prefer-for-of triple-equals no-var */
+// tslint:disable:no-arg
+// tslint:disable:no-var-keyword
+// tslint:disable:object-literal-key-quotes
+// tslint:disable:object-literal-shorthand
+// tslint:disable:one-variable-per-declaration
+// tslint:disable:only-arrow-functions
+// tslint:disable:prefer-conditional-expression
+// tslint:disable:prefer-const
+// tslint:disable:prefer-for-of
+// tslint:disable:prefer-switch
+// tslint:disable:prefer-template
+// tslint:disable:space-within-parens
+// tslint:disable:triple-equals
 
 function examples() {
     function add_0() {
@@ -818,7 +830,7 @@ function examples() {
             var len = kids.addClass('hilite').length;
 
             $('#results span:first').text(len);
-            $('#results span:last').text((<HTMLElement> event.target).tagName);
+            $('#results span:last').text(event.target.tagName);
 
             event.preventDefault();
         });
@@ -1602,7 +1614,7 @@ function examples() {
 
     function event_target_0() {
         $('body').click(function(event) {
-            $('#log').html('clicked: ' + (<HTMLElement> event.target).nodeName);
+            $('#log').html('clicked: ' + event.target.nodeName);
         });
     }
 
@@ -2322,8 +2334,8 @@ function examples() {
     }
 
     function jQuery_contains_0() {
-        $.contains(document.documentElement, document.body); // true
-        $.contains(document.body, document.documentElement); // false
+        $.contains(document.documentElement!, document.body); // true
+        $.contains(document.body, document.documentElement!); // false
     }
 
     function jQuery_data_0() {
@@ -3032,13 +3044,13 @@ function examples() {
         // attach click handlers to #test
         $('#test')
         // this === "zombie"; handler unbound after first click
-            .on('click', $.proxy(me.test, me) as JQuery.EventHandler<HTMLElement>)
+            .on('click', $.proxy(me.test, me))
 
             // this === "person"
-            .on('click', youClick as JQuery.EventHandler<HTMLElement>)
+            .on('click', youClick)
 
             // this === "zombie"
-            .on('click', $.proxy(you.test, me) as JQuery.EventHandler<HTMLElement>)
+            .on('click', $.proxy(you.test, me))
 
             // this === "<button> element"
             .on('click', you.test);
@@ -3052,7 +3064,7 @@ function examples() {
                 $('#test').off('click', obj.test);
             },
         };
-        $('#test').on('click', jQuery.proxy(obj, 'test') as JQuery.EventHandler<HTMLElement>);
+        $('#test').on('click', jQuery.proxy(obj, 'test'));
     }
 
     function jQuery_proxy_2() {
@@ -3061,7 +3073,7 @@ function examples() {
             type: 'dog',
 
             // Note that event comes *after* one and two
-            test: function(one: any, two: any, event: any) {
+            test: function(one: typeof you, two: typeof they, event: JQuery.Event<HTMLElement>) {
                 $('#log')
 
                 // `one` maps to `you`, the 1st additional
@@ -3081,7 +3093,7 @@ function examples() {
 
                     // The clicked element is `event.target`,
                     // and its type is "button"
-                    .append('the ' + event.target.type + '.');
+                    .append('the ' + (event.target as HTMLButtonElement).type + '.');
             },
         };
 
@@ -3090,7 +3102,7 @@ function examples() {
 
         // Set up handler to execute me.test() in the context
         // of `me`, with `you` and `they` as additional arguments
-        var proxy = $.proxy(me.test, me, you, they) as JQuery.EventHandler<HTMLElement>;
+        var proxy = $.proxy(me.test, me, you, they);
 
         $('#test')
             .on('click', proxy);
@@ -3430,7 +3442,7 @@ function examples() {
     function map_0() {
         $('p')
             .append($('input').map(function() {
-                return $(this).val();
+                return $(this).val() as string;
             })
                 .get()
                 .join(', '));
