@@ -1,8 +1,8 @@
-// Type definitions for nanoid 1.2
+// Type definitions for nanoid 1.0
 // Project: https://github.com/ai/nanoid
-// Definitions by: Ruben Schmidmeister <https://github.com/bash>, Sean Sobey <https://github.com/SeanSobey>
+// Definitions by: Ruben Schmidmeister <https://github.com/bash>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-declare const nanoid: (size?: number) => string;
+declare function nanoid(size?: number): string;
 
 export = nanoid;
