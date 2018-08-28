@@ -1,3 +1,3 @@
-declare var url: string;
+declare const url: string;
 
 export = url;

@@ -1,5 +1,7 @@
 /// <reference types="node" />
 
-import crypto = require('crypto');
+import * as crypto from 'crypto';
 
-export = crypto.randomBytes;
+declare const random: typeof crypto.randomBytes;
+
+export = random;

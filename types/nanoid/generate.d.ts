@@ -1,3 +1,3 @@
-declare function generate(alphabet: string, size: number): string;
+declare const generate: (alphabet: string, size: number) => string;
 
 export = generate;
